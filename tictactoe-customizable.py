@@ -2,32 +2,28 @@ from turtle import *
 from tkinter import *
 from math import *
 l = 50
+
+
+
+
+
+def lineto(x1, y1, x2, y2)
+    penup()
+    goto(x1,y1)
+    pendown()
+    goto(x2,y2)
+
+
+
 def boardCreate():
-    goto(0,0)
-    board.pendown()
-    board.fd(15 + l)
-    board.bk(l)
-    board.rt(90)
-    board.fd(l * 2)
-    board.bk(l)
-    board.lt(90)
-    board.fd(l)
-    board.bk(l * 2)
-    board.rt(90)
-    board.fd(l)
-    board.bk(l * 3)
-    board.fd(l)
-    board.rt(90)
-    board.fd(l)
-    board.bk(l * 2)
-    board.rt(90)
-    board.fd(l)
-    board.bk(l * 2)
-    board.lt(90)
-    board.fd(l * 2)
+    lineto(-0.5l, 1.5l, -0.5, -1.5l)
+    lineto(0.5l, 1.5l, 0.5l, -1.5l)
+    lineto(1.5l, 0.5l, -1.5l, 0.5l)
+    lineto(1.5l, 0.5l, 1.5l, 0.5l)
+
 
     #Borders
-    
+
     board.rt(90)
     board.fd(l * 2)
     board.rt(90)
@@ -38,7 +34,7 @@ def boardCreate():
     board.fd(l * 3)
     board.rt(90)
     board.fd(l * 3)
-    
+
 def drawLabels():
     letters.clear()
     letters.goto(letterStart)
@@ -76,12 +72,12 @@ def drawLabels():
     letters.rt(90)
     letters.forward(l)
     b2 = letters.pos()
-    letters.write(b2s)  
+    letters.write(b2s)
 
 
 #Variables Setup
-ht()
-speed(0)
+#ht()
+speed(54)
 penup()
 board = clone()
 win = "na"
@@ -102,10 +98,6 @@ c1s = "c1"
 c2s = "c2"
 c3s = "c3"
 
-
-
-
-
 #Setting up Turtles
 ##Setting up Screen
 title("TicTacToe")
@@ -119,7 +111,7 @@ letters = clone()
 boardCreate()
 drawLabels()
 goto(-100.00,-225.00)
-delay(1)
+delay(500)
 
 #Bottom Text (Usualy doesn't showup, but its ther just in case)
 penup()
@@ -143,7 +135,7 @@ while win == "na":
         goto(text)
         a = textinput("Player Two", "What Square?")
         b = "o"
-    
+
     #Square Changer
     if a == "a1":
         a1s = b
@@ -170,9 +162,9 @@ while win == "na":
     #Twice for compatability with larger numbers
     drawLabels()
     drawLabels()
-    
+
     # Win Conditions (X)
-    
+
     ##Rows
     if a1s == "x" and a2s == "x" and a3s == "x":
         win = "x"
@@ -195,13 +187,13 @@ while win == "na":
         win = "x"
         break
 
-    ##Diaggonal 
+    ##Diaggonal
     if a1s == "x" and b2s == "x" and c3s == "x":
         win = "x"
         break
     if a3s == "x" and b2s == "x" and c1s == "x":
         win = "x"
-        break 
+        break
 
 
 
@@ -229,13 +221,13 @@ while win == "na":
         break
 
 
-    ##Diaggonal 
+    ##Diaggonal
     if a1s == "o" and b2s == "o" and c3s == "o":
         win = "o"
         break
     if a3s == "o" and b2s == "o" and c1s == "o":
         win = "o"
-        break 
+        break
 
     #Twice for compatability with larger numbers
     drawLabels()
@@ -262,12 +254,3 @@ else:
 
 #Closing Window
 bye()
-
-        
-        
-
-
-
-
-
-
