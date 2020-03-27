@@ -4,9 +4,9 @@ from math import *
 l = 50
 #ht()
 
-region = [ 11 , 12 , 13 , 21 , 22 , 23 , 31 , 32 , 33 ]
-
-
+squareLocations = [[-l, l], []]
+name[squareLocations][0]
+win = False
 def lineto(x1, y1, x2, y2):
     penup()
     goto(x1,y1)
@@ -18,40 +18,54 @@ def boardCreate():
     lineto(0.5 * l, 1.5 * l, 0.5 * l, -1.5 * l)
     lineto(-1.5 * l, -0.5 * l, 1.5 * l, -0.5 * l)
     lineto(1.5 * l, 0.5 * l, -1.5 * l, 0.5 * l)
-
-def reigonFinder(x,y,z):
+def centerFinder():
+    
+def reigonFinder(x,y):
     penup()
-    goto(x,y)
-    setx(x + (l /2))
-    sety(x + (l /2))
-    topRight = pos()
-    goto(x,y)
-    setx(x - (l /2))
-    sety(x - (l /2))
-    bottomLeft = pos()
-    if z == "tr":
-        return topRight
+    if x < -l / 2:
+        if y > l / 2:
+            return 0
+        elif y < -l / 2:
+            return 6
+        else:
+            return 3
+    elif x > l / 2:
+        if y > l / 2:
+            return 2
+        elif y < -l / 2:
+            return 8
+        else:
+            return 5
     else:
-        return bottomLeft
+        if y > l / 2:
+            return 1
+        elif y < -l / 2:
+            return 7
+        else:
+            return 4
+    
+    
+    
+
+def clickLocation(x,y):
+    goto(x,y)
+    reigon = reigonFinder(x,y)
+def checkReigon():
+    
+
+
+
+
 boardCreate()
 penup()
 goto(0,0)
 
 
-a1t = reigonFinder(-l , l,"tr")
-a1b = reigonFinder(-l , l,"bl")
-
-b1t = reigonFinder(0 , 0 + l,"tr")
-b1b = reigonFinder(0 , 0 + l,"bl")
-
-c1t = reigonFinder(l , l,"tr")
-c1b = reigonFinder(l  , l ,"bl")
+onscreenclick(clickLocation)
 
 
 
-print(a1t)
-print(a1b)
-print(b1t)
-print(b1b)
-print(c1t)
-print(c1b)
+
+  
+        
+
