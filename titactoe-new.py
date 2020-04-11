@@ -18,7 +18,16 @@ l = 50
 
 p = ""
 regions = {0:"nA", 1:"nA", 2:"nA", 3:"nA", 4:"nA", 5:"nA", 6:"nA", 7:"nA", 8:"nA"}
-squareLocations = [[-l, l], []]
+squareCenter = [
+    [ -l ,l - (l / 2) ],
+    [ 0 , l - (l / 2) ],
+    [ l, l - (l / 2)],
+    [ -l,0 - (l / 2)],
+    [0, 0 - (l / 2)],
+    [l, 0 - (l / 2)],
+    [-l, -l - (l / 2)],
+    [0, -l - (l / 2)],
+    [l, -l - (l / 2)]]
 #name[squareLocations][0]
 win = False
 def lineto(x1, y1, x2, y2):
@@ -57,29 +66,54 @@ def reigonFinder(x,y):
             return 7
         elif y > -l/2 and y < l / 2:
             return 4
-    
+    else:
+        print("Not on the board! \n Try Again")
+        onscreenclick(clickLocation)
+        return None
     
     
 
 def clickLocation(x,y):
     goto(x,y)
     reigon = reigonFinder(x,y)
-    #print(reigon)
-    checkReigon(reigon)
-def checkReigon(a):
-    if regions[a] == '':
-        regions[a] = "x"
-        print( regions )
+    if reigon == None:
+        onscreenclick(clickLocation)
+    else:
+        print(reigon)
+        print(squareCenter[reigon])
+        drawX(squareCenter[reigon])
+        
+
+def drawO(square):
+    goto(square)
+    pendown()
+    circle(l / 2)
+    penup()
     
-
-
+def drawX(square):
+    goto(square)
+    seth(90)
+    fd( l / 2)
+    pendown()
+    rt(45)
+    fd( l / 2)
+    bk( l / 2)
+    rt(90)
+    fd( l / 2)
+    bk( l / 2)
+    rt(90)
+    fd( l / 2)
+    bk( l / 2)
+    rt(90)
+    fd( l / 2)
+    bk( l / 2)
+    penup()
+    
 
 
 boardCreate()
 penup()
 goto(0,0)
-
-
 onscreenclick(clickLocation)
 
 
