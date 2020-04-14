@@ -1,22 +1,12 @@
 from turtle import *
 from tkinter import *
 from math import *
-l = 50
-#ht()
 
-
-
-
-
-
-
-
-
-
-
-
-
-p = ""
+#Setup
+l = 25
+ht()
+speed(0)
+p = 1
 regions = {0:"nA", 1:"nA", 2:"nA", 3:"nA", 4:"nA", 5:"nA", 6:"nA", 7:"nA", 8:"nA"}
 squareCenter = [
     [ -l ,l - (l / 2) ],
@@ -28,8 +18,10 @@ squareCenter = [
     [-l, -l - (l / 2)],
     [0, -l - (l / 2)],
     [l, -l - (l / 2)]]
-#name[squareLocations][0]
 win = False
+
+
+
 def lineto(x1, y1, x2, y2):
     penup()
     goto(x1,y1)
@@ -41,7 +33,6 @@ def boardCreate():
     lineto(0.5 * l, 1.5 * l, 0.5 * l, -1.5 * l)
     lineto(-1.5 * l, -0.5 * l, 1.5 * l, -0.5 * l)
     lineto(1.5 * l, 0.5 * l, -1.5 * l, 0.5 * l)
-#def centerFinder():
     
 def reigonFinder(x,y):
     penup()
@@ -67,7 +58,7 @@ def reigonFinder(x,y):
         elif y > -l/2 and y < l / 2:
             return 4
     else:
-        print("Not on the board! \n Try Again")
+        print("Not on the board! \n ")
         onscreenclick(clickLocation)
         return None
     
@@ -81,8 +72,13 @@ def clickLocation(x,y):
     else:
         print(reigon)
         print(squareCenter[reigon])
-        drawX(squareCenter[reigon])
-        
+        if p  == 1:
+            drawX(squareCenter[reigon])
+            regions.update(reigon="X")
+            
+        else:
+            drawO(squareCenter[reigon])
+            reigons.update(reigon="O")
 
 def drawO(square):
     goto(square)
@@ -109,6 +105,14 @@ def drawX(square):
     bk( l / 2)
     penup()
     
+
+#def game():
+
+
+
+
+    
+
 
 
 boardCreate()
