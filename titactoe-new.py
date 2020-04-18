@@ -6,18 +6,19 @@ from math import *
 l = 25
 ht()
 speed(0)
-player = 1
-regions = {0:"nA", 1:"nA", 2:"nA", 3:"nA", 4:"nA", 5:"nA", 6:"nA", 7:"nA", 8:"nA"}
-squareCenter = [
-    [ -l ,l - (l / 2) ],
-    [ 0 , l - (l / 2) ],
-    [ l, l - (l / 2)],
-    [ -l,0 - (l / 2)],
-    [0, 0 - (l / 2)],
-    [l, 0 - (l / 2)],
-    [-l, -l - (l / 2)],
-    [0, -l - (l / 2)],
-    [l, -l - (l / 2)]]
+global person = True #True - x ; False - o
+global regions = {0:"nA", 1:"nA", 2:"nA", 3:"nA", 4:"nA", 5:"nA", 6:"nA", 7:"nA", 8:"nA"}
+global squareCenter =[
+    ( -l ,l - (l / 2) ),
+    ( 0 , l - (l / 2) ),
+    ( l, l - (l / 2)),
+    ( -l,0 - (l / 2)),
+    (0, 0 - (l / 2)),
+    (l, 0 - (l / 2)),
+    (-l, -l - (l / 2)),
+    (0, -l - (l / 2)),
+    (l, -l - (l / 2))
+    ]
 win = False
 info = 0, 0 - l * 5
 
@@ -68,18 +69,23 @@ def reigonFinder(x,y):
 def clickLocation(x,y):
     goto(x,y)
     reigon = reigonFinder(x,y)
-    if reigon == None:
-        onscreenclick(clickLocation)
-    else:
+    if reigon != None:
         print(reigon)
         print(squareCenter[reigon])
+        #checkBoard(reigon)
 
-        printInfo("Please Wait...")
-        drawX(squareCenter[reigon])
-        regions.update(reigon="X")
-
-        drawO(squareCenter[reigon])
-        reigons.update(reigon="O")
+        if not checkReigon(reigon):
+            return
+        if person == True:
+            drawX(squareCenter[reigon])
+            regions.update(reigon="X")
+        else:
+            drawO(squareCenter[reigon])
+            reigons.update(reigon="O")
+        
+        person = not person
+    else:
+        print("Try again!")
 
 def drawO(square):
     goto(square)
@@ -112,21 +118,34 @@ def printInfo(t):
     pendown()
     write(t)
     penup()
+
+
+def checkReigon(r):
+    if regions[r] == "nA":
+        return True
+    print("Try Again")
+    return False
     
-    
-#def game():
-
-
-
 
     
+#def checkBoard():
 
 
 
+
+
+
+
+
+
+    
 boardCreate()
 penup()
 goto(0,0)
-onscreenclick(clickLocation)
+onscreenclick(clickLocation)   
+
+mainloop()
+
 
 
 
