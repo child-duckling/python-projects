@@ -6,7 +6,7 @@ from math import *
 l = 25
 ht()
 speed(0)
-p = 1
+player = 1
 regions = {0:"nA", 1:"nA", 2:"nA", 3:"nA", 4:"nA", 5:"nA", 6:"nA", 7:"nA", 8:"nA"}
 squareCenter = [
     [ -l ,l - (l / 2) ],
@@ -19,6 +19,7 @@ squareCenter = [
     [0, -l - (l / 2)],
     [l, -l - (l / 2)]]
 win = False
+info = 0, 0 - l * 5
 
 
 
@@ -72,13 +73,13 @@ def clickLocation(x,y):
     else:
         print(reigon)
         print(squareCenter[reigon])
-        if p  == 1:
-            drawX(squareCenter[reigon])
-            regions.update(reigon="X")
-            
-        else:
-            drawO(squareCenter[reigon])
-            reigons.update(reigon="O")
+
+        printInfo("Please Wait...")
+        drawX(squareCenter[reigon])
+        regions.update(reigon="X")
+
+        drawO(squareCenter[reigon])
+        reigons.update(reigon="O")
 
 def drawO(square):
     goto(square)
@@ -105,7 +106,14 @@ def drawX(square):
     bk( l / 2)
     penup()
     
-
+def printInfo(t):
+    penup()
+    goto(info)
+    pendown()
+    write(t)
+    penup()
+    
+    
 #def game():
 
 
