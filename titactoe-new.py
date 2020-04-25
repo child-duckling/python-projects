@@ -6,9 +6,9 @@ from math import *
 l = 25
 ht()
 speed(0)
-global person = True #True - x ; False - o
-global regions = {0:"nA", 1:"nA", 2:"nA", 3:"nA", 4:"nA", 5:"nA", 6:"nA", 7:"nA", 8:"nA"}
-global squareCenter =[
+person = True #True - x ; False - o
+regions = {0:"nA", 1:"nA", 2:"nA", 3:"nA", 4:"nA", 5:"nA", 6:"nA", 7:"nA", 8:"nA"}
+squareCenter =[
     ( -l ,l - (l / 2) ),
     ( 0 , l - (l / 2) ),
     ( l, l - (l / 2)),
