@@ -67,21 +67,24 @@ def reigonFinder(x,y):
     
 
 def clickLocation(x,y):
+    global regions
+    global person
+    
     goto(x,y)
-    reigon = reigonFinder(x,y)
-    if reigon != None:
-        print(reigon)
-        print(squareCenter[reigon])
-        #checkBoard(reigon)
+    region = reigonFinder(x,y)
+    if region != None:
+        print(region)
+        print(squareCenter[region])
+        #checkBoard(regions)
 
-        if not checkReigon(reigon):
+        if not checkReigon(regions):
             return
         if person == True:
-            drawX(squareCenter[reigon])
-            regions.update(reigon="X")
+            drawX(squareCenter[regions])
+            regions.update(region="X")
         else:
             drawO(squareCenter[reigon])
-            reigons.update(reigon="O")
+            regions.update(region="O")
         
         person = not person
     else:
@@ -121,6 +124,7 @@ def printInfo(t):
 
 
 def checkReigon(r):
+    global regions
     if regions[r] == "nA":
         return True
     print("Try Again")
@@ -145,6 +149,7 @@ goto(0,0)
 onscreenclick(clickLocation)   
 
 mainloop()
+
 
 
 
