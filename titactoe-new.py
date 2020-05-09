@@ -21,7 +21,7 @@ squareCenter =[
     ]
 win = False
 info = 0, 0 - l * 5
-
+#isFirstMove = True
 
 
 def lineto(x1, y1, x2, y2):
@@ -77,10 +77,10 @@ def clickLocation(x,y):
         print(squareCenter[region])
         #checkBoard(regions)
 
-        if not checkReigon(regions):
+        if not checkReigon(region):
             return
         if person == True:
-            drawX(squareCenter[regions])
+            drawX(squareCenter[region])
             regions.update(region="X")
         else:
             drawO(squareCenter[region])
@@ -89,11 +89,14 @@ def clickLocation(x,y):
         person = not person
     else:
         print("Try again!")
+    #checkBoard()
 
 def drawO(square):
     goto(square)
+    sety(ycor() + l / 1.125)
+    setx(xcor() + l / 2.9)
     pendown()
-    circle(l / 2)
+    circle(l / 2.5)
     penup()
     
 def drawX(square):
