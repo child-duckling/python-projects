@@ -83,7 +83,7 @@ def clickLocation(x,y):
             drawX(squareCenter[regions])
             regions.update(region="X")
         else:
-            drawO(squareCenter[reigon])
+            drawO(squareCenter[region])
             regions.update(region="O")
         
         person = not person
