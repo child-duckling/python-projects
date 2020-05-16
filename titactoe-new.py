@@ -7,18 +7,19 @@ l = 25
 ht()
 speed(0)
 person = True #True - x ; False - o
-regions = {0:"nA", 1:"nA", 2:"nA", 3:"nA", 4:"nA", 5:"nA", 6:"nA", 7:"nA", 8:"nA"}
+regions = {10:"nA", 11:"nA", 12:"nA", 20:"nA", 21:"nA", 22:"nA", 30:"nA", 31:"nA", 32:"nA"}
 squareCenter =[
     ( -l ,l - (l / 2) ),
     ( 0 , l - (l / 2) ),
     ( l, l - (l / 2)),
     ( -l,0 - (l / 2)),
-    (0, 0 - (l / 2)),
+    (0, 0 - (l / 2)), 
     (l, 0 - (l / 2)),
     (-l, -l - (l / 2)),
     (0, -l - (l / 2)),
     (l, -l - (l / 2))
     ]
+rowcol = [10,11,12,20,21,22,30,31,32]
 win = False
 info = 0, 0 - l * 5
 #isFirstMove = True
@@ -40,25 +41,25 @@ def reigonFinder(x,y):
     penup()
     if x < -l / 2 and x > -l / 2 - l :
         if y > l / 2 and y < l / 2 + l:
-            return 0
+            return 10
         elif y < -l / 2 and y > -l / 2 - l:
-            return 6
+            return 30
         elif y > -l/2 and y < l / 2:
-            return 3
+            return 20
     elif x > l / 2 and x < l / 2 + l:
         if y > l / 2 and y < l / 2 + l:
-            return 2
+            return 12
         elif y < -l / 2 and y > -l / 2 - l:
-            return 8
+            return 32
         elif y > -l/2 and y < l / 2:
-            return 5
+            return 22
     elif x < l/2 and x > -l/2:
         if y > l / 2 and y < l / 2 + l:
-            return 1
+            return 11
         elif y < -l / 2 and y > -l / 2 - l:
-            return 7
+            return 31
         elif y > -l/2 and y < l / 2:
-            return 4
+            return 41
     else:
         print("Not on the board! \n ")
         onscreenclick(clickLocation)
@@ -73,23 +74,22 @@ def clickLocation(x,y):
     goto(x,y)
     region = reigonFinder(x,y)
     if region != None:
-        print(region)
-        print(squareCenter[region])
-        #checkBoard(regions)
-
-        if not checkReigon(region):
+        #print(region)
+        #print(squareCenter[region])
+        checkBoard(regions)
+        if  checkReigon(region) = True:
             return
-        if person == True:
-            drawX(squareCenter[region])
-            regions.update(region="X")
-        else:
-            drawO(squareCenter[region])
-            regions.update(region="O")
-        
-        person = not person
+            if person == True:
+                drawX(squareCenter[region])
+                regions.update(region="X")
+            else:
+                drawO(squareCenter[region])
+                regions.update(region="O")
+            person = not person
+
     else:
         print("Try again!")
-    #checkBoard()
+    checkBoard()
 
 def drawO(square):
     goto(square)
@@ -134,9 +134,35 @@ def checkReigon(r):
     return False
     
 
-    
-#def checkBoard():
 
+def checkBoard(x):
+    
+    row1 = [regions[x] for x in rowcol if x // 10 == 1]
+    row2 = [regions[x] for x in rowcol if x // 20 == 1]
+    row3 = [regions[x] for x in rowcol if x // 30 == 1]
+    column1 = [regions[x] for x in rowcol if x % 10 == ]
+    for i in row1:
+        print(i)
+    for i in row2:
+        print(i)
+    for i in row3:
+        print(i)
+    
+    if row1[1] and row1[2] and row1[3] == "x": #Checking the top row
+        return "x"
+    elif row1[1] and row1[2] and row1[3] == "o":
+        return "o"
+    elif row2[1] and row2[2] and row2[3] == "x": #Checking middle Row
+        return "x"
+    elif row2[1] and row2[2] and row2[3] == "o":
+        return "o"
+    elif row3[1] and row3[2] and row3[3] == "x": #Checking bottom row
+        return "x"
+    elif row3[1] and row3[2] and row3[3] == "o":
+        return "o"
+    
+
+    
 
 
 
@@ -150,7 +176,6 @@ boardCreate()
 penup()
 goto(0,0)
 onscreenclick(clickLocation)   
-
 mainloop()
 
 
