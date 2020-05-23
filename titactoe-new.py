@@ -73,20 +73,21 @@ def clickLocation(x,y):
     
     goto(x,y)
     region = reigonFinder(x,y)
+    checkBoardResult = checkBoard(region)
     if region != None:
-        #print(region)
-        #print(squareCenter[region])
-        checkBoard(regions)
-        if  checkReigon(region) = True:
-            return
-            if person == True:
-                drawX(squareCenter[region])
-                regions.update(region="X")
-            else:
-                drawO(squareCenter[region])
-                regions.update(region="O")
-            person = not person
-
+        if checkBoardResult == "no" or checkBoardResult == "nA" :  
+            if  checkReigon(region) == True:
+                if person == True:
+                    drawX(squareCenter[region])
+                    regions.update(region="X")
+                else:
+                    drawO(squareCenter[region])
+                    regions.update(region="O")
+                person = not person
+        else:
+            print(checkBoardResult + " has won the game \n Good Game! \n\n\n\n\n Click The Board To Exit")
+            onscreenclick(gameOver)
+            return     
     else:
         print("Try again!")
     checkBoard()
@@ -140,27 +141,38 @@ def checkBoard(x):
     row1 = [regions[x] for x in rowcol if x // 10 == 1]
     row2 = [regions[x] for x in rowcol if x // 20 == 1]
     row3 = [regions[x] for x in rowcol if x // 30 == 1]
-    column1 = [regions[x] for x in rowcol if x % 10 == ]
+    column1 = [regions[x] for x in rowcol if x % 10 == 1]
+    column2 = [regions[x] for x in rowcol if x % 10 == 2]
+    column3 = [regions[x] for x in rowcol if x % 10 == 3]
     for i in row1:
         print(i)
     for i in row2:
         print(i)
     for i in row3:
         print(i)
+
     
-    if row1[1] and row1[2] and row1[3] == "x": #Checking the top row
-        return "x"
-    elif row1[1] and row1[2] and row1[3] == "o":
-        return "o"
-    elif row2[1] and row2[2] and row2[3] == "x": #Checking middle Row
-        return "x"
-    elif row2[1] and row2[2] and row2[3] == "o":
-        return "o"
-    elif row3[1] and row3[2] and row3[3] == "x": #Checking bottom row
-        return "x"
-    elif row3[1] and row3[2] and row3[3] == "o":
-        return "o"
+    for i in [row1,row2,row3]:
+        if i[0] == i[1] == i [2]:
+            return i[1]
+    for i in [column1,column2,column3]:
+        if i[0] == i[1] == i [0]:
+            return i[1]
     
+    
+    if row1[0] == row2[1] == row3[2] == "x":
+        return "x"
+    elif row1[0] == row2[1] == row3[2] == "o":
+        return "o"
+    elif row1[2] == row2[1] == row3[0] == "x":
+        return "x"
+    elif row1[2] == row2[1] == row3[0] == "o":
+        return "o"
+    else:
+        return "no"
+
+def gameOver(x,y):
+    exit(2010001110110000101101101011001010010000001000011011011000110111101110011011001010110010000100001) #Game Closed in Binary
 
     
 
