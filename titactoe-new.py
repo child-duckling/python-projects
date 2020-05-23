@@ -20,7 +20,6 @@ squareCenter =[
     (l, -l - (l / 2))
     ]
 rowcol = [10,11,12,20,21,22,30,31,32]
-win = False
 info = 0, 0 - l * 5
 #isFirstMove = True
 
@@ -62,7 +61,6 @@ def reigonFinder(x,y):
             return 41
     else:
         print("Not on the board! \n ")
-        onscreenclick(clickLocation)
         return None
     
     
@@ -75,7 +73,7 @@ def clickLocation(x,y):
     region = reigonFinder(x,y)
     checkBoardResult = checkBoard(region)
     if region != None:
-        if checkBoardResult == "no" or checkBoardResult == "nA" :  
+        if checkBoardResult == "no" or checkBoardResult == "nA"  :  
             if  checkReigon(region) == True:
                 if person == True:
                     drawX(squareCenter[region])
@@ -84,13 +82,17 @@ def clickLocation(x,y):
                     drawO(squareCenter[region])
                     regions.update(region="O")
                 person = not person
-        else:
-            print(checkBoardResult + " has won the game \n Good Game! \n\n\n\n\n Click The Board To Exit")
+        else: #Ending Sequence
+            penup()
+            goto(info)
+            write(checkBoardResult + " has won the game")
+            sety(ycor() - l)
+            write("Click The Board To Exit")
+            print(checkBoardResult + " has won the game \n Good Game! \n\n\n\n\nClick The Board To Exit")
             onscreenclick(gameOver)
             return     
     else:
         print("Try again!")
-    checkBoard()
 
 def drawO(square):
     goto(square)
@@ -171,19 +173,10 @@ def checkBoard(x):
     else:
         return "no"
 
-def gameOver(x,y):
+def gameOver(x,y): #Game Closer, gets set as the function that gets run in onscreenclick()
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n") #"Clearing" The Screen
     exit(2010001110110000101101101011001010010000001000011011011000110111101110011011001010110010000100001) #Game Closed in Binary
 
-    
-
-
-
-
-
-
-
-
-    
 boardCreate()
 penup()
 goto(0,0)
