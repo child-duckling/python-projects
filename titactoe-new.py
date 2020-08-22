@@ -110,7 +110,7 @@ def clickLocation(x,y):
                     goto(info)
                     write(checkBoard(region) + " has won the game")
                     sety(ycor() - l)
-                    write("Click the board To exit")
+                    write("Click the board to exit")
                     print(checkBoard(region) + " has won the game \n Good Game! \n\n\n\n\nClick The Board To Exit")
                     onscreenclick(gameOver)
                     return
