@@ -93,7 +93,7 @@ while True: #Main Game Loop
     except TypeError:
         print("-----------------------ERROR: Moving On-----------------------#_------------------")
     #print("r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
-    pygame.display.set_caption("Gradient Test: r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
+    pygame.display.set_caption("Gradient Test: r = " + str(r) + "; g = " + str(g) + "; b = " + str(b) + "; Time API Response: " + str(time))
    # img = font.render(time, True, (r / 5, g /5, b /5))
    # DISPLAYSURF.blit(img, (20, 20))
     #print(time.request.body.find.values.values.)
