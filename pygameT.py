@@ -3,29 +3,31 @@ from random import *
 from pygame.locals import *
 from requests import *
 pygame.init()
-font = pygame.font.Font('freesansbold.ttf', 32)
-
+font = pygame.font.SysFont(None, 24)
 #Getting Currernt Time
 time = requests.get('https://worldtimeapi.org/api/timezone/America/Anchorage')
 
 #Variables
-WIDTH = 400
-HEIGHT = 400
+WIDTH = 1000
+HEIGHT = 600
 r = 0
 g = 0
 b = 0
+maximumValue = 255
+fps = 240
 
 #How much to add/subtract
-radd = 0.1 + randint(1, 5) * 0.01
-gadd = 0.1 + randint(1, 5) * 0.01
-badd = 0.1 + randint(1, 5) * 0.01
+radd = randint(1, 5) * 0.1
+gadd = randint(1, 5) * 0.1
+badd = randint(1, 5) * 0.1
 
 
 
-DISPLAYSURF= pygame.display.set_mode((WIDTH, HEIGHT))
+DISPLAYSURF = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Gradient Test ")
 clock = pygame.time.Clock()
-fps = 240
+pygame.font.init()
+
 rFLip = False
 gFlip = False
 bFlip = False
@@ -56,14 +58,14 @@ def changeColor():
     
     ##Changing Switch Values
     #255 to 0
-    if r >= 255:
-        r = 255
+    if r >= maximumValue:
+        r = maximumValue
         rFLip = True
-    elif g >= 255:
-        g = 255
+    elif g >= maximumValue:
+        g = maximumValue
         gFlip = True
-    elif b >= 255:
-        b = 255
+    elif b >= maximumValue:
+        b = maximumValue
         bFlip = True
 
     #0 to 255
@@ -87,11 +89,14 @@ while True: #Main Game Loop
     changeColor()
     try:
         DISPLAYSURF.fill((r,g,b), rect=None, special_flags=0)
+        
     except TypeError:
-        print("ERROR: Moving On")
-    print("r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
-    
-    
+        print("-----------------------ERROR: Moving On-----------------------#_------------------")
+    #print("r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
+    pygame.display.set_caption("Gradient Test: r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
+   # img = font.render(time, True, (r / 5, g /5, b /5))
+   # DISPLAYSURF.blit(img, (20, 20))
+    #print(time.request.body.find.values.values.)
 
     
     
