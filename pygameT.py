@@ -1,12 +1,14 @@
-import pygame, sys, random, requests
+import pygame, sys, random, requests, datetime
 from random import *
 from pygame.locals import *
 from requests import *
+from datetime import *
+
 pygame.init()
 font = pygame.font.SysFont(None, 24)
 #Getting Currernt Time
-time = requests.get('https://worldtimeapi.org/api/timezone/America/Anchorage')
-
+timeRow1 = datetime.now().strftime('%X %p')
+timeRow2 = datetime.now().strftime('%A, %B %d, %Y')
 #Variables
 WIDTH = 1000
 HEIGHT = 600
@@ -78,7 +80,16 @@ def changeColor():
     elif b <= 0:
         b = 1
         bFlip = False
-
+def getCurrentTime(a):
+    global timeRow1, timeRow2
+    timeRow1 = datetime.now().strftime('%X %p')
+    timeRow2 = datetime.now().strftime('%A, %B %d, %Y')
+    if a == 0:
+        return timeRow1
+    elif a == 1:
+        return timeRow2
+    else:
+        print("Error: Time Not Specified")
 
 
 
@@ -93,10 +104,12 @@ while True: #Main Game Loop
     except TypeError:
         print("-----------------------ERROR: Moving On-----------------------#_------------------")
     #print("r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
-    pygame.display.set_caption("Gradient Test: r = " + str(r) + "; g = " + str(g) + "; b = " + str(b) + "; Time API Response: " + str(time))
-   # img = font.render(time, True, (r / 5, g /5, b /5))
-   # DISPLAYSURF.blit(img, (20, 20))
-    #print(time.request.body.find.values.values.)
+    pygame.display.set_caption("Gradient Test: r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
+    
+    a = font.render(str(getCurrentTime(0)), True, (r / 5, g /5, b /5 ))
+    bb = font.render(str(getCurrentTime(1)), True, (r / 5, g /5, b /5 ))
+    DISPLAYSURF.blit(a, (WIDTH / 2, HEIGHT / 2))
+    DISPLAYSURF.blit(bb, (WIDTH / 2, (HEIGHT / 2) + (HEIGHT / 8))
 
     
     
