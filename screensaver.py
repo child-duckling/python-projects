@@ -1,9 +1,9 @@
-import pygame, sys, random, requests, datetime
+import pygame, sys, random, requests, datetime, math
 from random import *
 from pygame.locals import *
 from requests import *
 from datetime import *
-
+from math import *
 pygame.init()
 font = pygame.font.SysFont(None, 24)
 #Getting Currernt Time
@@ -93,31 +93,27 @@ def getCurrentTime(a):
 
 
 
-GREEN = (0,255,0)
-pygame.draw.circle(DISPLAYSURF,GREEN, (WIDTH // 2, HEIGHT // 2), 100 , 100)
+
+
 
 while True: #Main Game Loop
     changeColor()
     try:
         DISPLAYSURF.fill((r,g,b), rect=None, special_flags=0)
-        
+     
     except TypeError:
         print("-----------------------ERROR: Moving On-----------------------#_------------------")
     #print("r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
     pygame.display.set_caption("Gradient Test: r = " + str(r) + "; g = " + str(g) + "; b = " + str(b))
-    
-    a = font.render(str(getCurrentTime(0)), True, (r / 5, g /5, b /5 ))
-    bb = font.render(str(getCurrentTime(1)), True, (r / 5, g /5, b /5 ))
-    DISPLAYSURF.blit(a, (WIDTH / 2, HEIGHT / 2))
-    DISPLAYSURF.blit(bb, (WIDTH / 2, (HEIGHT / 2) + (HEIGHT / 8))
+    pygame.draw.circle(DISPLAYSURF,((255 - r),(255 - g),(255 - b)), (WIDTH // 2, HEIGHT // 2), 150 , 100)
+    a = font.render(str(getCurrentTime(0)), True, (r / 2, r / 2, r / 2 ))
+    bb = font.render(str(getCurrentTime(1)), True, (r / 2, r / 2, r / 2 ))
+    DISPLAYSURF.blit(a, ((WIDTH / 2) - 50, ((HEIGHT / 6) * 2)))
+    DISPLAYSURF.blit(bb, ((WIDTH / 2) - 100, ((HEIGHT / 6) * 2) + (HEIGHT / 6) * 1.75))
 
-    
-    
     for event in pygame.event.get():
         if event.type == QUIT or event.type == MOUSEBUTTONDOWN:
             pygame.quit()
             sys.exit()
     clock.tick(fps)
     pygame.display.update()
-
-
