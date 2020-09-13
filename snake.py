@@ -1,25 +1,42 @@
 import pygame
 import time
 import random
- 
+
 pygame.init()
  
 
+
+
+
+##These are the Custom Game Parameters
+
+
 WIDTH = 500
 HEIGHT = 500
- 
-gameDisplay = pygame.display.set_mode((WIDTH, HEIGHT))
 
-x1 = WIDTH / 2
-y1 = HEIGHT / 2
- 
-clock = pygame.time.Clock()
- 
+#Ideal box size to speed is 1 to 3 
 boxSize = 10
-speed = 30
- 
+speed = 30 
 
- 
+
+
+
+
+
+
+if (WIDTH == 500 and HEIGHT == 500 and boxSize == 10 and speed == 30):
+    print("Running Snake with default parameters")
+else:
+    print("Running Snake with custom parameters: \n-Height: " + str(HEIGHT) + 
+    "\n-Width: " + str(WIDTH) +
+    "\n-Box Size: " + str(boxSize) +
+    "\n-Speed: " + str(speed))
+
+
+gameDisplay = pygame.display.set_mode((WIDTH, HEIGHT))
+x1 = WIDTH / 2
+y1 = HEIGHT / 2 
+clock = pygame.time.Clock()
 def our_snake(boxSize, snake_list):
     for x in snake_list:
         pygame.draw.rect(gameDisplay, (0,255,0), [x[0], x[1], boxSize, boxSize])
@@ -72,6 +89,9 @@ def gameLoop():
                 elif event.key == pygame.K_DOWN:
                     y1_change = boxSize
                     x1_change = 0
+                elif event.key == pygame.K_k:
+                    foodx = round(random.randrange(0, WIDTH - boxSize) / 10.0) * 10.0
+                    foody = round(random.randrange(0, HEIGHT - boxSize) / 10.0) * 10.0
  
         loopback()
         x1 += x1_change
@@ -98,8 +118,9 @@ def gameLoop():
             foodx = round(random.randrange(0, WIDTH - boxSize) / 10.0) * 10.0
             foody = round(random.randrange(0, HEIGHT - boxSize) / 10.0) * 10.0
             Length_of_snake += 1
-            speed = speed - 0.1
-            
+            speed = speed - ((speed / speed) - (speed * 0.01))
+        
+        
  
         clock.tick(speed)
  
